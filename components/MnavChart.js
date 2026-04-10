@@ -98,7 +98,7 @@ export default function MnavChart({ data }) {
               stroke="#0f172a"
               strokeWidth={3}
               dot={false}
-              activeDot={{ r: 5, fill: "#0f172a" }}
+              activeDot={{ r: 6, fill: "#0f172a" }}
             />
           </LineChart>
         </ResponsiveContainer>

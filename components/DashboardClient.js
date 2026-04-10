@@ -16,6 +16,16 @@ function formatCurrency(value) {
   }).format(value);
 }
 
+function formatCompactCurrency(value) {
+  if (value >= 1_000_000_000) {
+    return `$${(value / 1_000_000_000).toFixed(1)}B`;
+  }
+  if (value >= 1_000_000) {
+    return `$${(value / 1_000_000).toFixed(1)}M`;
+  }
+  return `$${value}`;
+}
+
 function getMnavStatus(mnav) {
   if (mnav > 1) return "Trading above BTC NAV";
   if (mnav < 1) return "Trading below BTC NAV";
@@ -114,7 +124,11 @@ export default function DashboardClient() {
                   Latest mNAV
                 </p>
                 <div className="flex items-end gap-3 mb-3">
-                  <h2 className="text-5xl font-bold text-slate-900">
+                  <h2
+                    className={`text-5xl font-bold ${
+                        latest.mnav >= 1 ? "text-emerald-600" : "text-rose-600"
+                    }`}
+                  >
                     {latest.mnav}
                   </h2>
                   {change !== null && (
@@ -179,8 +193,8 @@ export default function DashboardClient() {
                   <p className="text-sm font-medium text-slate-500 mb-2">
                     Estimated Market Cap
                   </p>
-                  <p className="text-3xl font-bold text-slate-900 break-words">
-                    {formatCurrency(latest.market_cap)}
+                  <p className="text-3xl font-bold text-slate-900">
+                    {formatCompactCurrency(latest.market_cap)}
                   </p>
                   <p className="text-sm text-slate-500 mt-2">
                     Estimated from market data

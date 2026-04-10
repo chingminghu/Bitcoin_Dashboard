@@ -67,6 +67,14 @@ export default function AISummaryCard({ data }) {
         </p>
       )}
 
+      {loading && (
+          <div className="mt-4 animate-pulse">
+            <div className="h-4 bg-slate-200 rounded w-3/4 mb-2"></div>
+            <div className="h-4 bg-slate-200 rounded w-2/3 mb-2"></div>
+            <div className="h-4 bg-slate-200 rounded w-1/2"></div>
+          </div>
+        )}
+
       {summary && (
         <div className="rounded-2xl bg-slate-50 border border-slate-200 p-4">
           <p className="text-slate-700 leading-7 whitespace-pre-line">
